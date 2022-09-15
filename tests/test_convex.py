@@ -70,7 +70,8 @@ class TestSegment:
         self.trianglePoints.append(R2Point(-3, 1))
         self.trianglePoints.append(R2Point(0, 4))
         self.trianglePoints.append(R2Point(3, 1))
-        self.f = Segment(R2Point(0.0, 0.0), R2Point(1.0, 0.0), self.trianglePoints)
+        self.f = Segment(R2Point(0.0, 0.0), R2Point(1.0, 0.0),
+                         self.trianglePoints)
 
     # Двуугольник является фигурой
     def test_figure(self):
