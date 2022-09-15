@@ -80,8 +80,8 @@ class Polygon(Figure):
         self._perimeter = a.dist(b) + b.dist(c) + c.dist(a)
         self._area = abs(R2Point.area(a, b, c))
         self._countRibs = Segment(a, b, trianglePoints).countRibs() + \
-        Segment(b, c, trianglePoints).countRibs() + \
-        Segment(a, c, trianglePoints).countRibs()
+            Segment(b, c, trianglePoints).countRibs() + \
+            Segment(a, c, trianglePoints).countRibs()
 
     def perimeter(self):
         return self._perimeter
@@ -131,13 +131,13 @@ class Polygon(Figure):
 
             # добавление двух новых рёбер
             self._perimeter += t.dist(self.points.first()) + \
-            t.dist(self.points.last())
+                t.dist(self.points.last())
 
-            self._countRibs += Segment(t, self.points.first(),
-                                       self.trianglePoints).countRibs() + \
-            Segment(t, self.points.last(),
-                    self.trianglePoints).countRibs()
-
+            self._countRibs += \
+                Segment(t, self.points.first(),
+                        self.trianglePoints).countRibs() + \
+                Segment(t, self.points.last(),
+                        self.trianglePoints).countRibs()
             self.points.push_first(t)
 
         return self
