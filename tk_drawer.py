@@ -47,8 +47,13 @@ class TkDrawer:
         self.root.update()
 
     # Рисование линии
-    def draw_line(self, p, q):
-        self.canvas.create_line(x(p), y(p), x(q), y(q), fill="black", width=2)
+    def draw_line(self, p, q, color):
+        self.canvas.create_line(x(p), y(p), x(q), y(q), fill=color, width=2)
+        self.root.update()
+
+    def create_polygon(self, a, b, c):
+        self.canvas.create_polygon([x(a), y(a), x(b),
+                                    y(b), x(c), y(c)], fill='green')
         self.root.update()
 
 
