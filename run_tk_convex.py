@@ -8,17 +8,21 @@ def void_draw(self, tk):
     pass
 
 
-def point_draw(self, tk):
+def point_draw(self, tk, trianglePoints):
     tk.draw_point(self.p)
 
 
-def segment_draw(self, tk):
-    tk.draw_line(self.p, self.q)
+def segment_draw(self, tk, trianglePoints):
+    a = Segment(self.p, self.q, trianglePoints)
+    color = "red" if a.countRibs() == 1 else "black"
+    tk.draw_line(self.p, self.q, color)
 
 
-def polygon_draw(self, tk):
+def polygon_draw(self, tk, trianglePoints):
     for n in range(self.points.size()):
-        tk.draw_line(self.points.last(), self.points.first())
+        a = Segment(self.points.last(), self.points.first(), trianglePoints)
+        color = "red" if a.countRibs() == 1 else "black"
+        tk.draw_line(self.points.last(), self.points.first(), color)
         self.points.push_last(self.points.pop_first())
 
 
@@ -43,10 +47,9 @@ try:
     while True:
         f = f.add(R2Point())
         tk.clean()
-        tk.draw_line(trianglePoints[0], trianglePoints[1])
-        tk.draw_line(trianglePoints[1], trianglePoints[2])
-        tk.draw_line(trianglePoints[0], trianglePoints[2])
-        f.draw(tk)
+        tk.create_polygon(trianglePoints[0], trianglePoints[1],
+                          trianglePoints[2])
+        f.draw(tk, trianglePoints)
         print(f"S = {f.area()}, P = {f.perimeter()}\n")
         print(f"Количество ребер, лежащих в треугольнике: {f.countRibs()}")
 except(EOFError, KeyboardInterrupt):
